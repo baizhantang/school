@@ -1,0 +1,14 @@
+server:
+  port: 8081
+  context-path: /student
+spring:
+  datasource:
+#  116.55.243.120:3306
+    url: jdbc:mysql://localhost:3306/school?useSSL=false
+    username: root
+    password: Sh_951753.
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
