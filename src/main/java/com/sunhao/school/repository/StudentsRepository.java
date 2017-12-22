@@ -8,11 +8,16 @@ import java.util.List;
 
 public interface StudentsRepository extends JpaRepository<Students, Integer> {
 
-//    student.name, student.gender, student.weight, classes.name, grades.name
     @Query("select student.name, student.gender, student.weight, classes.name, grades.name " +
             "from Students student left join student.classes classes left join classes.grades grades " +
             "where grades.name=?1 " +
             "and classes.name=?2 " +
             "and student.name=?3")
-    public List<Students> cascadeQuery(String gradeName, String className, String studentName);
+    List<Object> cascadeQuery(String gradeName, String className, String studentName);
+
+    @Query("select student.name, student.gender, student.weight, classes.name, grades.name " +
+            "from Students student left join student.classes classes left join classes.grades grades " +
+            "where student.classes.id=classes.id " +
+            "and classes.grades.id=grades.id")
+    List<Object> findAllStudents();
 }
